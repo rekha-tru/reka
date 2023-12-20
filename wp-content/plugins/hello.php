@@ -16,7 +16,11 @@ cc
 
 function hello_dolly_get_lyric() {
 	/** These are the lyrics to Hello Dolly */
+<<<<<<< HEAD
 $lyrics = "Hello, Dolly no1
+=======
+$lyrics = "Hello, Dolly b
+>>>>>>> origin/main
 Well, hello, Dolly
 It's so nice to have you back where you belong
 You're lookin' swell, Dolly
