@@ -189,6 +189,7 @@ class git_controller {
 
 		}
 		public function create_branch($post){
+			global $wpdb;
 			$account = $this->get_current_account();
 			$username = $account->username;
 			$accessToken = $this->encrypt_decrypt('decrypt',$account->personal_access_token);
@@ -200,10 +201,22 @@ class git_controller {
 
 			chdir($repositoryPath);
 			if (is_dir('.git')) {
+				exec('git add .');
+				exec("git commit -m 'Commiting before switching branch'");
+
 				$command = "git checkout -b {$newBranchName}";
 				exec($command, $output, $returnCode);
 				exec('git branch');
 				if ($returnCode === 0) {
+					//updatin database with current branch.
+					$tablename=$wpdb->prefix.'current_linked_repo';
+					if($current_repo){
+						$data_update = array('branch_name'=>$newBranchName);
+						$data_where = array('account_id'=>$account->id);
+
+						$wpdb->update($tablename, $data_update, $data_where);
+					}
+
 					exec('git checkout {$newBranchName}');
 					exec('git fetch origin');
 					$pushCommand = "git push origin {$newBranchName}";
@@ -223,7 +236,11 @@ class git_controller {
 				$type = 'error';
 				$msg =  "Git repository not found at {$repositoryPath}";
 			}
+			$redirectUrl = 'admin.php?page=git_main_repos&msg='.$msg.'&type='.$type;
+			//header('Location: ' . $redirectUrl);
 			$this->redirect('admin.php?page=git_main_repos&msg='.$msg.'&type='.$type);
+			echo '<meta http-equiv="refresh" content="5;url=' . htmlspecialchars($redirectUrl, ENT_QUOTES, 'UTF-8') . '">';
+			echo 'Refreshing page in 5 seconds...';
 		}
 		public function create_repo($post){
 			
