@@ -368,7 +368,7 @@ class git_controller {
 			
 
 			// 		exec("git init {$repoPath}", $output, $returnCode);
-			// 		chdir($repoPath);
+			// 		chdir($repoPath); ch
 					
 			// 		exec("git remote add origin {$git_url}");
 			// 		// Fetch all remote branches and data
