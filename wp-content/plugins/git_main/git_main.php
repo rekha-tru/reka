@@ -95,7 +95,7 @@ function git_pull_callback() {
 			//$repositoryPath = ABSPATH.$repo;
 			$repositoryPath = ABSPATH;
 			chdir($repositoryPath);
-			exec('git fetch origin');
+			exec("git fetch origin {$branch}");
 			$Command = "git pull origin {$branch}";
 			exec($Command, $Output, $ReturnCode);
 			
