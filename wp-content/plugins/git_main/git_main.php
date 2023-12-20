@@ -100,7 +100,7 @@ function git_pull_callback() {
 			exec($Command, $Output, $ReturnCode);
 			if($ReturnCode!=0){
 				exec("git merge origin/{$branch}");
-				exec("git ls-files -u",$files,$ReturnCode);
+				exec("git diff --name-only --diff-filter=U && git ls-files -u",$files,$ReturnCode);
 				exec("git add .");
 				exec("git commit -m 'fetching all remote changes'");
 				exec("git pull origin {$branch}",$Output,$ReturnCode);
