@@ -200,7 +200,9 @@
                <?php if($current_branch): ?>
                <div>
                   <h1>Current branch - <?php echo $current_branch;?> </h1>
-                  <div id="repolHelp" class="form-text">Perform your required action to the selected branch</div>
+                  <div id="repolHelp" class="form-text"><p>Please check status to see if there are any changes to commit or pull</p>
+                   <p>Press "Push  changes" button if there are unstaged changes to commit</p>
+               </div>
                   <div>
                      <div class="div-center">
 
