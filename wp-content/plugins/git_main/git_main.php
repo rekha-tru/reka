@@ -100,13 +100,16 @@ function git_pull_callback() {
 			exec($Command, $Output, $ReturnCode);
 			if($ReturnCode!=0){
 				exec("git merge origin/{$branch}");
+				$files  = exec("git diff --name-only --diff-filter=U");
 				exec("git add .");
 				exec("git commit -m 'fetching all remote changes'");
 				exec("git pull origin {$branch}",$Output,$ReturnCode);
 			}
 				// <button type="button" class="btn-close close-btn" aria-label="Close"></button>
 				$res =  '<div data-bs-theme="dark" class="error-div">';
-
+if($files ){
+	print_r($files);
+}
 				foreach($Output as $text){
 					$res .= '<p>'.$text.'</p>';
 				}
