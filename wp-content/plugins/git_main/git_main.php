@@ -100,7 +100,7 @@ function git_pull_callback() {
 			exec($Command, $Output, $ReturnCode);
 			if($ReturnCode!=0){
 				exec("git merge origin/{$branch}");
-				$files  = exec("git diff --name-only --diff-filter=U && git ls-files -u");
+				exec("git ls-files -u",$files,$ReturnCode);
 				exec("git add .");
 				exec("git commit -m 'fetching all remote changes'");
 				exec("git pull origin {$branch}",$Output,$ReturnCode);
@@ -108,7 +108,8 @@ function git_pull_callback() {
 				// <button type="button" class="btn-close close-btn" aria-label="Close"></button>
 				$res =  '<div data-bs-theme="dark" class="error-div">';
 				if($files ){
-					echo '<p>Please resolve conflicts in the file "'.$files.'" by navigating to it and carefully addressing any merge conflicts present in the code.</p>';
+					print_r($files);
+					//echo '<p>Please resolve conflicts in the file "'.$files.'" by navigating to it and carefully addressing any merge conflicts present in the code.</p>';
 					echo '<p>And then push the resolved changes.</p>';
 				}
 				foreach($Output as $text){
