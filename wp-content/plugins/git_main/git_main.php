@@ -98,7 +98,12 @@ function git_pull_callback() {
 			exec("git fetch origin {$branch}");
 			$Command = "git pull origin {$branch}";
 			exec($Command, $Output, $ReturnCode);
-			
+			if($ReturnCode!=0){
+				exec("git merge origin/{$branch}");
+				exec("git add .");
+				exec("git commit -m 'fetching all remote changes'");
+				exec("git pull origin {$branch}",$Output,$ReturnCode);
+			}
 				// <button type="button" class="btn-close close-btn" aria-label="Close"></button>
 				$res =  '<div data-bs-theme="dark" class="error-div">';
 
