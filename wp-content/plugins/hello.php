@@ -2,6 +2,7 @@
 /**
  * @package Hello_Dolly
  * @version 1.7.2
+ *hello
  */
 /*
 Plugin Name: Hello Dolly
