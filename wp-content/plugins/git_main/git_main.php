@@ -107,7 +107,7 @@ function git_pull_callback() {
 			}
 				// <button type="button" class="btn-close close-btn" aria-label="Close"></button>
 				$res =  '<div data-bs-theme="dark" class="error-div">';
-				if($files ){
+				if(isset($files) ){
 					echo '<p>Please resolve conflicts by navigating to the listed files.</p>';
 					foreach($files as $file){
 						echo '<p>'.$file.'</p>';
