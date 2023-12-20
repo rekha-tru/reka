@@ -15,11 +15,7 @@ Description: This is not just a plugin, it symbolizes the hope and enthusiasm of
 Author: Matt Mullenweg
 Version: 1.7.2
 Author URI: http://ma.tt/
-<<<<<<< HEAD
-ccccc heelloo
-=======
-ccccc 12
->>>>>>> origin/main
+cc
 */
 
 function hello_dolly_get_lyric() {
