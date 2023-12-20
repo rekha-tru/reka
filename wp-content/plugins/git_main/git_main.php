@@ -142,13 +142,23 @@ function git_push_callback() {
 			//test comment
 			$commitMessage = $_REQUEST['commit_msg'];
 
-			if (is_dir('.git')) {
-				exec("git add .");
-				exec("git commit -m '{$commitMessage}'");
-				$Command = "git push origin {$branch}  2>&1";
-				exec($Command, $Output, $ReturnCode);
+			// if (is_dir('.git')) {
+			// 	exec("git add .");
+			// 	exec("git commit -m '{$commitMessage}'");
+			// 	$Command = "git push origin {$branch}  2>&1";
+			// 	exec($Command, $Output, $ReturnCode);
 					
+			// }
+			exec('git init');
+			exec('git add .');
+			exec("git commit -m '{$commitMessage}'");
+			if(exec('git remote -v')){
+				exec("git remote set-url origin {$remoteRepository}");
+			}else{
+				exec("git remote add origin {$remoteRepository}");
 			}
+			$outputPush = exec("git push origin {$branch}",$Output,$statuscode);
+
 			$res =  '<div data-bs-theme="dark" class="error-div">';
 			foreach($Output as $text){
 				$res .= '<p>'.$text.'</p>';

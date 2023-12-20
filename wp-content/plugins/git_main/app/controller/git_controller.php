@@ -240,7 +240,7 @@ class git_controller {
 			$data = [
 				'name' => $repoName,
 				'description' => $repoName.' repository created in '.$username,
-				'auto_init' => true, 
+				'auto_init' => false, 
 				'private' =>$private,
 			];
 			//$this->debug($data);
