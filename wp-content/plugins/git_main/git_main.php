@@ -163,7 +163,7 @@ function git_push_callback() {
 			}else{
 				exec("git remote add origin {$remoteRepository}");
 			}
-			$outputPush = exec("git push origin {$branch}",$Output,$statuscode);
+			$outputPush = exec("git push origin {$branch} 2>&1",$Output,$statuscode);
 
 			$res =  '<div data-bs-theme="dark" class="error-div">';
 			foreach($Output as $text){
