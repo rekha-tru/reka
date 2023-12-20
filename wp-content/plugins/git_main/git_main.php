@@ -33,13 +33,8 @@ function encrypt_decrypt($action, $string) {
 }
 
 add_action('wp_ajax_get_status', 'get_status_callback');
-do_action( "wp_ajax_nopriv_get_status",  'get_status_callback' );
-
 
 function get_status_callback() {
-	if ( !is_user_logged_in() ) {
-		echo 'Please login first.';die;
-	}
 	global $wpdb; 
 	$current_user = get_current_user_id(); 
 	$account = $wpdb->get_row( "SELECT * FROM {$wpdb->prefix}git_accounts WHERE is_active = 1 AND user_id = {$current_user}", OBJECT );
@@ -73,12 +68,8 @@ function get_status_callback() {
 	
 }
 add_action('wp_ajax_git_pull', 'git_pull_callback');
-do_action( "wp_ajax_nopriv_git_pull",  'git_pull_callback' );
 
 function git_pull_callback() {
-	if ( !is_user_logged_in() ) {
-		echo 'Please login first.'; exit();
-	}
 	$nonce = $_REQUEST['_wpnonce'];
 	if ( ! wp_verify_nonce( $nonce, 'git_pull_nonce' ) ) {
 		echo 'This nonce is not valid.'; exit();
@@ -127,11 +118,7 @@ function git_pull_callback() {
 }
 
 add_action('wp_ajax_git_push', 'git_push_callback');
-do_action( "wp_ajax_nopriv_git_push",  'git_push_callback' );
 function git_push_callback() {
-	if ( !is_user_logged_in() ) {
-		echo 'Please login first.'; exit();
-	}
 	$nonce = $_REQUEST['_wpnonce'];
 	if ( ! wp_verify_nonce( $nonce, 'git_push_nonce' ) ) {
 		echo 'This nonce is not valid.'; exit();
