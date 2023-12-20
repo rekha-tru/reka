@@ -108,9 +108,11 @@ function git_pull_callback() {
 				// <button type="button" class="btn-close close-btn" aria-label="Close"></button>
 				$res =  '<div data-bs-theme="dark" class="error-div">';
 				if($files ){
-					print_r($files);
-					//echo '<p>Please resolve conflicts in the file "'.$files.'" by navigating to it and carefully addressing any merge conflicts present in the code.</p>';
-					echo '<p>And then push the resolved changes.</p>';
+					echo '<p>Please resolve conflicts by navigating to the listed files.</p>';
+					foreach($files as $file){
+						echo '<p>'.$file.'</p>';
+					}
+					echo '<p>And then make sure to push the resolved changes.</p>';
 				}
 				foreach($Output as $text){
 					$res .= '<p>'.$text.'</p>';
