@@ -52,7 +52,7 @@ function get_status_callback() {
 			//$repositoryPath = ABSPATH.$repo;
 			$repositoryPath = ABSPATH;
 			chdir($repositoryPath);
-
+			exec("git fetch origin {$branch}");
 			$Command = "git status";
 			exec($Command, $Output, $ReturnCode);
 			// <button type="button" class="btn-close close-btn" aria-label="Close"></button>
