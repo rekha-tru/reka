@@ -2,11 +2,7 @@
 /**
  * @package Hello_Dolly
  * @version 1.7.2
-<<<<<<< HEAD
- *hello we gre
-=======
- *hello we are
->>>>>>> origin/main
+ * hello we gre
  */
 /*
 Plugin Name: Hello Dolly
@@ -20,7 +16,7 @@ cc
 
 function hello_dolly_get_lyric() {
 	/** These are the lyrics to Hello Dolly */
-	$lyrics = "Hello, Dolly
+	$lyrics = "Hello, Dolly b
 Well, hello, Dolly
 It's so nice to have you back where you belong
 You're lookin' swell, Dolly

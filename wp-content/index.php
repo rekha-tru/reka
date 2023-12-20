@@ -1,2 +1,2 @@
 <?php
-// Silence is golden 12.
+// Silence is golden per 12.
